@@ -22,10 +22,15 @@ def print_average(pybank_data):
 #Average change in profits/losses
     average_change_profits = change_profits/total_months
 
-#Increase in profit
-    max_profits = max(row1 - row2)
-
-
+#Greatest increase change in profit
+    best_profits = if (change_profits) > 1:
+        print(max(change_profits))
+        print(Date.row())
+ 
+#Greatest decrease change in loss
+    worst_loss = if (change_profits) < 1:
+        print(max(change_profits))
+        print(Date.row())
 
 #Read in csv file
 with open(Pybank_revenue, 'r') as csvfile:
@@ -34,3 +39,11 @@ with open(Pybank_revenue, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
     header = next(csvreader)
+
+#loop through the data
+    for row in csvreader
+        print(total_months)
+        print(total_profits)
+        print(average_change_profits)
+        print(best_profits)
+        print(worst_loss)
