@@ -1,5 +1,6 @@
 import os
 import csv
+import math
 # Path to collect data from Resources table
 Pybank_revenue = os.path.join("Resources", "budget_data.csv")
 
@@ -23,14 +24,16 @@ def print_average(pybank_data):
     average_change_profits = change_profits/total_months
 
 #Greatest increase change in profit
-    best_profits = if (change_profits) > 1:
-        print(max(change_profits))
-        print(Date.row())
+    best_profits = (change_profits) > 1
+    print(Date.row())
+    print(max(change_profits))
+    
  
 #Greatest decrease change in loss
-    worst_loss = if (change_profits) < 1:
-        print(max(change_profits))
-        print(Date.row())
+    worst_loss = (change_profits) < 1
+    print(Date.row())
+    print(max(change_profits))
+    
 
 #Read in csv file
 with open(Pybank_revenue, 'r') as csvfile:
@@ -41,9 +44,9 @@ with open(Pybank_revenue, 'r') as csvfile:
     header = next(csvreader)
 
 #loop through the data
-    for row in csvreader
-        print(total_months)
-        print(total_profits)
-        print(average_change_profits)
-        print(best_profits)
-        print(worst_loss)
+    for row in csvreader:
+        print(f" Total Months: {str(total_months)}")
+        print(f" Total: {str(total_profits)}")
+        print(f" Average Change: {str(average_change_profits)}")
+        print(f" Greatest Increase in Profits: {str(best_profits)}")
+        print(f" Greatest Decrease in Profits: {str(worst_loss)}")
