@@ -51,7 +51,7 @@ with open(Pybank_revenue, 'r') as csvfile:
         change_profits = int(row[1]) - previous_profit
         months_change.append(change_profits)
         previous_profit = int(row[1])
-        average_change_profits = sum(months_change)/months_count
+        average_change_profits = (sum(months_change)/len(months_change))
 
         #find the greatest increase in profits
         if int(row[1]) > best_profit:
@@ -75,3 +75,14 @@ with open(Pybank_revenue, 'r') as csvfile:
         print(f" Average Change: ${average_change_profits: .2f}")
         print(f" Greatest Increase in Profits: {best_profit_month}, ${highest_profit}")
         print(f" Greatest Decrease in Profits: {worst_loss_month}, ${worst_loss}")
+
+        #export to txt file
+        Bank_analysis = os.path.join("Analysis", "Bank_analysis.txt")
+        with open(Bank_analysis, "w",) as txtfile:
+            txtfile.write(f" Financial Analysis\n")
+            txtfile.write(f"---------------\n")
+            txtfile.write(f" Total Months: {months_count}\n")
+            txtfile.write(f" Total: ${total_profits}\n")
+            txtfile.write(f" Average Change: ${average_change_profits: 2f}\n")
+            txtfile.write(f" Greatest Increase in Profits: {best_profit_month}, ${highest_profit}\n")
+            txtfile.write(f" Greatest Decrease in Profits: {worst_loss_month}, ${worst_loss}\n") 
