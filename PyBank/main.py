@@ -1,39 +1,51 @@
 import os
 import csv
-import math
+
 # Path to collect data from Resources table
 Pybank_revenue = os.path.join("Resources", "budget_data.csv")
+
+#define variables
+total_months = 0
+total_profits = 0
+change_profits = 0
+average_change_profits = 0
+months = [0]
+months_change = [0]
+months_count = [0]
 
 #Define functions and have it accept pybank as sole parameter
 def print_average(pybank_data):
 
 #assigning values to variables
-    Date = int(pybank.data[0])
+    Date = str(pybank.data[0])
     Profit_Losses = int(pybank.data[1])
 
-#Number of months on record
-    total_months = sum(Date)
+#set variables within rows
+    net_profit = int(row[1])
+    previous_profit = int(row[1])
+    best_profit = int(row[1])
+    best_profit_month = int(row[0])
+    worst_loss =int(row[1])
+    worst_loss_month = int(row[0])
 
-#Total profits in period
-    total_profits = sum(Profit_Losses)
+#start csvreader
+    for row in csvreader:
+        #count of total months
+        months.append(row[0])
+        months_count = len(months)
 
-#Change in profits/losses
-    change_profits = Profit_Losses.row() - Profit_Losses.row(1)
+        #total profits/losses for period
+        total_profits += int(row[1])
 
-#Average change in profits/losses
-    average_change_profits = change_profits/total_months
+        #average change of profits in period
+        change_profits = int(row[1]) - previous_profit
+        months_change.append(change_profits)
+        average_change_profits = sum(months_change)/months_count
 
-#Greatest increase change in profit
-    best_profits = (change_profits) > 1
-    print(Date.row())
-    print(max(change_profits))
-    
- 
-#Greatest decrease change in loss
-    worst_loss = (change_profits) < 1
-    print(Date.row())
-    print(max(change_profits))
-    
+        #find the greatest increase in profits
+        if int(row[1]) > best_profit:
+            best_profit = int(row[1])
+
 
 #Read in csv file
 with open(Pybank_revenue, 'r') as csvfile:
