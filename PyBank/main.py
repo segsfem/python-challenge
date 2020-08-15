@@ -7,9 +7,9 @@ total_months = 0
 total_profits = 0
 change_profits = 0
 average_change_profits = 0
-months = [0]
-months_change = [0]
-months_count = [0]
+months = []
+months_change = []
+months_count = []
 
 # Path to collect data from Resources table
 Pybank_revenue = os.path.join("Resources", "budget_data.csv")
@@ -38,11 +38,11 @@ with open(Pybank_revenue, 'r') as csvfile:
     worst_loss =int(row[1])
     worst_loss_month = (row[0])
 
-#start csvreader
+#start loop
     for row in csvreader:
         #count of total months
         months.append(row[0])
-        months_count = len(months)
+        months_count = len(months) + 1
 
         #total profits/losses for period
         total_profits += int(row[1])
@@ -50,6 +50,7 @@ with open(Pybank_revenue, 'r') as csvfile:
         #average change of profits in period
         change_profits = int(row[1]) - previous_profit
         months_change.append(change_profits)
+        previous_profit = int(row[1])
         average_change_profits = sum(months_change)/months_count
 
         #find the greatest increase in profits
@@ -71,6 +72,6 @@ with open(Pybank_revenue, 'r') as csvfile:
         print(f"---------------------")
         print(f" Total Months: {months_count}")
         print(f" Total: ${total_profits}")
-        print(f" Average Change: ${average_change_profits}")
-        print(f" Greatest Increase in Profits: ${highest_profit}")
-        print(f" Greatest Decrease in Profits: ${worst_loss}")
+        print(f" Average Change: ${average_change_profits: .2f}")
+        print(f" Greatest Increase in Profits: {best_profit_month}, ${highest_profit}")
+        print(f" Greatest Decrease in Profits: {worst_loss_month}, ${worst_loss}")
