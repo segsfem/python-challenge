@@ -18,7 +18,7 @@ pypoll_election = os.path.join("Resources", "election_data.csv")
 def print_winner(pypoll_election):
 
 #assigning values to variables
-    Voter ID = int(pypoll_election[0])
+    Voter_ID = int(pypoll_election[0])
     County = int(pypoll_election[1])
     Candidate = str(pypoll_election[2])
 
@@ -32,11 +32,11 @@ with open(pypoll_election, 'r') as csvfile:
     row = next(csvreader)
 
 #set variables within rows
-    list_candidates = int(row[2])
+    list_candidates = (row[2])
     count_of_votes = (row[2])
     total_votes = int(row[0])
     highest_votes = int(row[0])
-    votes_per_candidate =int(row[2])
+    votes_per_candidate =(row[2])
     
 #start loop
     for row in csvreader:
@@ -45,18 +45,17 @@ with open(pypoll_election, 'r') as csvfile:
 
         #list of candidates
         list_candidates = list(row[2])
-        #average change of profits in period
-        change_profits = int(row[1]) - previous_profit
-        months_change.append(change_profits)
-        previous_profit = int(row[1])
-        average_change_profits = (sum(months_change)/len(months_change))
+        list_candidates.append(row[2])
 
-        #find the greatest increase in profits
+        #percentage votes for each candidates
+        per_count_of_votes = (sum(len(list_candidates))/voter_id) * 100
+
+        #total number of votes of each candidate
         if int(row[1]) > best_profit:
             best_profit = int(row[1])
             best_profit_month = row[0]
 
-        #find the worst decrease in profits
+        #winner
         if int(row[1]) < worst_loss:
             worst_loss = int(row[1])
             worst_loss_month = row[0]
